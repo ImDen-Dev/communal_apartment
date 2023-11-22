@@ -1,3 +1,18 @@
-<mat-toolbar color="primary">
-  <p>header works!</p>
+<mat-toolbar style="padding-top: 0 !important" color="primary">
+  <mat-form-field>
+    <input matInput [matDatepicker]="dp" [formControl]="date" />
+    <mat-datepicker-toggle
+      style="color: white"
+      matIconSuffix
+      [for]="dp"
+    ></mat-datepicker-toggle>
+    <mat-datepicker
+      #dp
+      startView="multi-year"
+      panelClass="month-picker"
+      disabled="false"
+      (monthSelected)="onMonthSelected($event, dp)"
+    >
+    </mat-datepicker>
+  </mat-form-field>
 </mat-toolbar>

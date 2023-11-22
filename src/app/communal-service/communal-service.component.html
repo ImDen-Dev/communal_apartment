@@ -1,1 +1,76 @@
-<p>communal-service works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+  <!-- Current Column -->
+  <ng-container matColumnDef="current">
+    <th mat-header-cell *matHeaderCellDef>Поточні</th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!isEdit">{{ element.current }}</ng-container>
+      <ng-container *ngIf="isEdit"
+        ><mat-form-field class="form-field"
+          ><input matInput [value]="element.current" /></mat-form-field
+      ></ng-container>
+    </td>
+  </ng-container>
+
+  <!-- Previous Column -->
+  <ng-container matColumnDef="previous">
+    <th mat-header-cell *matHeaderCellDef>Попередні</th>
+    <td mat-cell *matCellDef="let element">{{ element.previous }}</td>
+  </ng-container>
+
+  <!-- Difference Column -->
+  <ng-container matColumnDef="difference">
+    <th mat-header-cell *matHeaderCellDef>Різниця</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.difference }}
+    </td>
+  </ng-container>
+
+  <!-- Price Column -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Ціна</th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="!isEdit"
+        >{{ element.price }}/{{ element.unit }}</ng-container
+      >
+      <ng-container *ngIf="isEdit"
+        ><mat-form-field class="form-field"
+          ><input matInput [value]="element.price" /></mat-form-field
+      ></ng-container>
+    </td>
+  </ng-container>
+
+  <!-- Calculation Column -->
+  <ng-container matColumnDef="calculation">
+    <th mat-header-cell *matHeaderCellDef>Розрахунок</th>
+    <td mat-cell *matCellDef="let element">{{ element.calculation }}</td>
+  </ng-container>
+
+  <!-- Total Column -->
+  <ng-container matColumnDef="total">
+    <th mat-header-cell *matHeaderCellDef>Разом</th>
+    <td mat-cell *matCellDef="let element">{{ element.total }}</td>
+  </ng-container>
+
+  <!-- Star Column -->
+  <ng-container matColumnDef="star" stickyEnd>
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button *ngIf="!isEdit" mat-menu-item (click)="isEdit = !isEdit">
+          <mat-icon>edit</mat-icon>
+          <span>Редагувати</span>
+        </button>
+        <button *ngIf="isEdit" mat-menu-item (click)="isEdit = !isEdit">
+          <mat-icon>save</mat-icon>
+          <span>Зберегти</span>
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
