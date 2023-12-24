@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ServiceItems } from '../shared/models/service.model';
+import { ServiceItems } from '@shared/models';
 
 const ELEMENT_DATA: ServiceItems[] = [
   {

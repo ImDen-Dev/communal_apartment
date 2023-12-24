@@ -1,5 +1,13 @@
-<mat-toolbar style="padding-top: 0 !important" color="primary">
-  <mat-form-field>
+<mat-toolbar
+  class="mat-toolbar-flex"
+  style="padding-top: 0 !important"
+  color="primary"
+>
+  <mat-icon
+    class="material-symbols-outlined"
+    fontIcon="emoji_objects"
+  ></mat-icon>
+  <mat-form-field *ngIf="isLoggedIn$ | async">
     <input matInput [matDatepicker]="dp" [formControl]="date" />
     <mat-datepicker-toggle
       style="color: white"
@@ -10,9 +18,17 @@
       #dp
       startView="multi-year"
       panelClass="month-picker"
-      disabled="false"
+      [disabled]="false"
       (monthSelected)="onMonthSelected($event, dp)"
     >
     </mat-datepicker>
   </mat-form-field>
+  <button
+    *ngIf="isLoggedIn$ | async"
+    mat-icon-button
+    aria-label="logout"
+    (click)="onSignOut()"
+  >
+    <mat-icon>logout</mat-icon>
+  </button>
 </mat-toolbar>
