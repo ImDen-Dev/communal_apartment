@@ -1,0 +1,86 @@
+<mat-card id="card" style="text-align: center">
+  <mat-card-title style="padding: 20px 0 15px 0">
+    {{ isLogin ? "Увійти" : "Зареєструватись" }}
+  </mat-card-title>
+  <mat-card-content [formGroup]="form">
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        type="email"
+        placeholder="example@email.com"
+        formControlName="email"
+        required
+      />
+      <mat-error *ngIf="getControlErrorByName('email', 'email')">
+        Будь ласка, введіть дійсну адресу електронної пошти.
+      </mat-error>
+      <mat-error *ngIf="getControlErrorByName('email')">
+        Будь ласка, заповніть поле електронної пошти.
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field style="margin-top: 15px">
+      <mat-label>Пароль</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password"
+      />
+      <mat-icon
+        *ngIf="isLogin"
+        matSuffix
+        (click)="hidePassword = !hidePassword"
+        >{{ hidePassword ? "visibility_off" : "visibility" }}</mat-icon
+      >
+      <mat-error *ngIf="getControlErrorByName('password')">
+        Введіть будь ласка пароль.
+      </mat-error>
+      <mat-error *ngIf="getControlErrorByName('password', 'minlength')">
+        Пароль повинен бути не меньше 8 символів.
+      </mat-error>
+    </mat-form-field>
+    <br />
+    <mat-form-field *ngIf="!isLogin" style="margin-top: 15px">
+      <mat-label>Повторити пароль</mat-label>
+      <input
+        type="password"
+        matInput
+        formControlName="repeatPassword"
+        [required]="!isLogin"
+      />
+      <mat-error *ngIf="getControlErrorByName('repeatPassword')">
+        Введіть будь ласка пароль повторно.
+      </mat-error>
+      <mat-error *ngIf="getControlErrorByName('repeatPassword', 'compare')">
+        Паролі не співпадають.
+      </mat-error>
+    </mat-form-field>
+  </mat-card-content>
+  <mat-card-footer style="padding: 15px 0">
+    <button
+      mat-raised-button
+      color="primary"
+      style="margin-right: 5px"
+      (click)="onSubmit()"
+    >
+      {{ isLogin ? "Вхід" : "Реєстрація" }}
+    </button>
+
+    <h6 class="mat-subtitle-2" style="margin-top: 15px">
+      {{
+        isLogin
+          ? "Якщо ви ще не зареєстровані, зареєструйте новий обліковий запис."
+          : "Якщо ви вже зареєстровані, увійдіть у свій обліковий запис."
+      }}
+      <button
+        mat-button
+        color="primary"
+        style="margin-right: 5px"
+        (click)="changeForm()"
+      >
+        {{ isLogin ? "Зареєструватись" : "Війти" }}
+      </button>
+    </h6>
+  </mat-card-footer>
+</mat-card>
