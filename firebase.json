@@ -1,1 +1,16 @@
-{}
+{
+  "hosting": {
+    "public": "dist/communal_apartment",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

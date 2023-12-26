@@ -2,7 +2,7 @@
   <mat-card-title style="padding: 20px 0 15px 0">
     {{ isLogin ? "Увійти" : "Зареєструватись" }}
   </mat-card-title>
-  <mat-card-content [formGroup]="form">
+  <mat-card-content [formGroup]="form" (keydown.enter)="onSubmit()">
     <mat-form-field>
       <mat-label>Email</mat-label>
       <input
