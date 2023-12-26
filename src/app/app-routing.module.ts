@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
+import { inject, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InfoBlockComponent } from '@shared/components/info-block/info-block.component';
+import { AuthGuard } from '@shared/guards';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  { path: '', pathMatch: 'full', redirectTo: 'services' },
   {
     path: 'auth',
     loadChildren: () =>
@@ -13,6 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'services',
+    canActivate: [() => inject(AuthGuard).canActivate()],
     loadChildren: () =>
       import('./communal-services/communal-services.module').then(
         ({ CommunalServicesModule }) => CommunalServicesModule,
