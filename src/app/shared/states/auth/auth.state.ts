@@ -1,6 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Action, NgxsOnInit, Selector, State, StateContext } from '@ngxs/store';
-import { CheckSession, LogIn, SignOut, SignUp } from './auth.actions';
+import {
+  CheckSession,
+  LogIn,
+  SignOut,
+  SignUp,
+  UpdateUserData,
+} from './auth.actions';
 import { Auth } from '@shared/models';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable, take, tap, throwError } from 'rxjs';
@@ -99,6 +105,9 @@ export class AuthState implements NgxsOnInit {
       dispatch(new Navigate(['auth']));
     });
   }
+
+  @Action(UpdateUserData)
+  updateUserData({}: StateContext<Auth.AuthStateModel>) {}
 
   checkFirebaseErrors(error: unknown): void | Observable<never> {
     if (error instanceof FirebaseError) {

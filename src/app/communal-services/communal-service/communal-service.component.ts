@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { booleanAttribute, Component, Input } from '@angular/core';
 import { ServiceItems } from '@shared/models';
 
 const ELEMENT_DATA: ServiceItems[] = [
@@ -18,6 +18,11 @@ const ELEMENT_DATA: ServiceItems[] = [
   styleUrls: ['./communal-service.component.scss'],
 })
 export class CommunalServiceComponent {
+  @Input({ transform: booleanAttribute }) test = true;
+  constructor() {
+    console.log(this.test);
+  }
+
   displayedColumns: string[] = [
     'current',
     'previous',
