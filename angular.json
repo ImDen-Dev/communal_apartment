@@ -63,10 +63,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "communal_apartment:build:production"
+              "buildTarget": "communal_apartment:build:production"
             },
             "development": {
-              "browserTarget": "communal_apartment:build:development"
+              "buildTarget": "communal_apartment:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -74,7 +74,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "communal_apartment:build"
+            "buildTarget": "communal_apartment:build"
           }
         },
         "test": {

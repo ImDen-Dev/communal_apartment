@@ -7,22 +7,22 @@
     class="material-symbols-outlined"
     fontIcon="emoji_objects"
   ></mat-icon>
-  <mat-form-field *ngIf="isLoggedIn$ | async">
-    <input matInput [matDatepicker]="dp" [formControl]="date" />
-    <mat-datepicker-toggle
-      style="color: white"
-      matIconSuffix
-      [for]="dp"
-    ></mat-datepicker-toggle>
-    <mat-datepicker
-      #dp
-      startView="multi-year"
-      panelClass="month-picker"
-      [disabled]="false"
-      (monthSelected)="onMonthSelected($event, dp)"
-    >
-    </mat-datepicker>
-  </mat-form-field>
+  <!--  <mat-form-field *ngIf="isLoggedIn$ | async">-->
+  <!--    <input matInput [matDatepicker]="dp" [formControl]="date" />-->
+  <!--    <mat-datepicker-toggle-->
+  <!--      style="color: white"-->
+  <!--      matIconSuffix-->
+  <!--      [for]="dp"-->
+  <!--    ></mat-datepicker-toggle>-->
+  <!--    <mat-datepicker-->
+  <!--      #dp-->
+  <!--      startView="multi-year"-->
+  <!--      panelClass="month-picker"-->
+  <!--      [disabled]="false"-->
+  <!--      (monthSelected)="onMonthSelected($event, dp)"-->
+  <!--    >-->
+  <!--    </mat-datepicker>-->
+  <!--  </mat-form-field>-->
   <button
     *ngIf="isLoggedIn$ | async"
     mat-icon-button
